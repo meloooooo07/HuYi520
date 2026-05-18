@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>5.20 倒计时</title>
   <meta name="description" content="到 2026 年 5 月 20 日零点的倒计时，以及 5.20 到来后的主题海报页面。">
+  <link rel="preload" as="image" href="assets/flower-bg-tulips.jpg">
+  <link rel="preload" as="image" href="assets/carousel/fast/01-linabell-blue.jpg">
   <style>
     :root {
       color-scheme: light;
@@ -612,7 +614,7 @@
     body[data-state="love"] {
       background:
         linear-gradient(rgba(255, 248, 238, 0.68), rgba(255, 238, 220, 0.72)),
-        url("assets/flower-bg.jpg") center / cover fixed;
+        url("assets/flower-bg-tulips.jpg") center bottom / cover fixed;
     }
 
     body[data-state="love"]::after {
@@ -715,6 +717,18 @@
       pointer-events: none;
     }
 
+    .player-slide::before {
+      position: absolute;
+      inset: -24px;
+      content: "";
+      background-image: var(--slide-bg);
+      background-position: center;
+      background-size: cover;
+      filter: blur(22px) saturate(1.05);
+      opacity: 0.55;
+      transform: scale(1.06);
+    }
+
     .player-slide.is-active {
       opacity: 1;
       transform: scale(1);
@@ -725,8 +739,11 @@
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       filter: saturate(1.05) contrast(1.04);
+      background: rgba(107, 36, 50, 0.08);
+      position: relative;
+      z-index: 1;
     }
 
     .player-slide.is-headshot {
@@ -934,7 +951,7 @@
       body[data-state="love"] {
         background:
           linear-gradient(rgba(255, 248, 238, 0.70), rgba(255, 238, 220, 0.74)),
-          url("assets/flower-bg.jpg") center top / cover scroll;
+          url("assets/flower-bg-tulips.jpg") center bottom / cover scroll;
       }
 
       .stage {
@@ -1215,28 +1232,40 @@
       <div class="stage love-layout">
         <div class="love-hero">
           <div class="love-copy">
-            <h1 class="love-title" id="love-title">HuYi520Day</h1>
+            <h1 class="love-title" id="love-title">HuYi520</h1>
           </div>
 
-          <section class="player-carousel" aria-label="HuYi520Day 主题照片轮播">
+          <section class="player-carousel" aria-label="HuYi520 主题照片轮播">
             <div class="carousel-window">
-              <article class="player-slide is-active">
-                <img src="assets/carousel/01-linabell-blue.jpg" alt="玲娜贝儿穿上海申花蓝色外套">
+              <article class="player-slide is-active" style="--slide-bg: url('assets/carousel/fast/01-linabell-blue.jpg')">
+                <img src="assets/carousel/fast/01-linabell-blue.jpg" alt="玲娜贝儿穿上海申花蓝色外套" loading="eager" decoding="async" fetchpriority="high">
               </article>
-              <article class="player-slide">
-                <img src="assets/carousel/02-linabell-white.jpg" alt="玲娜贝儿穿上海申花白色球衣">
+              <article class="player-slide" style="--slide-bg: url('assets/carousel/fast/02-linabell-white.jpg')">
+                <img src="assets/carousel/fast/02-linabell-white.jpg" alt="玲娜贝儿穿上海申花白色球衣" loading="lazy" decoding="async">
               </article>
-              <article class="player-slide">
-                <img src="assets/carousel/03-shenhua-training.jpg" alt="上海申花球员训练场照片">
+              <article class="player-slide" style="--slide-bg: url('assets/carousel/fast/03-shenhua-training.jpg')">
+                <img src="assets/carousel/fast/03-shenhua-training.jpg" alt="上海申花球员训练场照片" loading="lazy" decoding="async">
               </article>
-              <article class="player-slide">
-                <img src="assets/carousel/04-cao-linabell.jpg" alt="曹赟定和玲娜贝儿合影">
+              <article class="player-slide" style="--slide-bg: url('assets/carousel/fast/04-cao-linabell.jpg')">
+                <img src="assets/carousel/fast/04-cao-linabell.jpg" alt="曹赟定和玲娜贝儿合影" loading="lazy" decoding="async">
               </article>
-              <article class="player-slide">
-                <img src="assets/carousel/05-arsenal-team.jpg" alt="阿森纳球队庆祝照片">
+              <article class="player-slide" style="--slide-bg: url('assets/carousel/fast/05-arsenal-team.jpg')">
+                <img src="assets/carousel/fast/05-arsenal-team.jpg" alt="阿森纳球队庆祝照片" loading="lazy" decoding="async">
               </article>
-              <article class="player-slide">
-                <img src="assets/carousel/06-arsenal-stadium.jpg" alt="阿森纳主场看台照片">
+              <article class="player-slide" style="--slide-bg: url('assets/carousel/fast/06-arsenal-stadium.jpg')">
+                <img src="assets/carousel/fast/06-arsenal-stadium.jpg" alt="阿森纳主场看台照片" loading="lazy" decoding="async">
+              </article>
+              <article class="player-slide" style="--slide-bg: url('assets/carousel/fast/07-odegaard-applause.jpg')">
+                <img src="assets/carousel/fast/07-odegaard-applause.jpg" alt="厄德高鼓掌致意照片" loading="lazy" decoding="async">
+              </article>
+              <article class="player-slide" style="--slide-bg: url('assets/carousel/fast/08-odegaard-rain.jpg')">
+                <img src="assets/carousel/fast/08-odegaard-rain.jpg" alt="厄德高雨中比赛照片" loading="lazy" decoding="async">
+              </article>
+              <article class="player-slide" style="--slide-bg: url('assets/carousel/fast/09-shenhua-heart.jpg')">
+                <img src="assets/carousel/fast/09-shenhua-heart.jpg" alt="上海申花球员比心照片" loading="lazy" decoding="async">
+              </article>
+              <article class="player-slide" style="--slide-bg: url('assets/carousel/fast/10-shenhua-flag.jpg')">
+                <img src="assets/carousel/fast/10-shenhua-flag.jpg" alt="上海申花球员挥旗庆祝照片" loading="lazy" decoding="async">
               </article>
             </div>
             <div class="carousel-controls" aria-label="轮播控制">
@@ -1268,7 +1297,7 @@
 
     function revealLovePage() {
       document.body.dataset.state = "love";
-      document.title = "HuYi520Day";
+      document.title = "HuYi520";
       startCarousel();
     }
 
@@ -1307,11 +1336,23 @@
         if (userAction) {
           restart();
         }
+        preloadAround(active);
       }
 
       function restart() {
         window.clearInterval(timer);
         timer = window.setInterval(() => showSlide(active + 1), 4200);
+      }
+
+      function preloadAround(index) {
+        [index + 1, index + 2].forEach((nextIndex) => {
+          const img = slides[nextIndex % slides.length]?.querySelector("img");
+          if (img && !img.dataset.preloaded) {
+            const preload = new Image();
+            preload.src = img.currentSrc || img.src;
+            img.dataset.preloaded = "true";
+          }
+        });
       }
 
       prev?.addEventListener("click", () => showSlide(active - 1, true));
