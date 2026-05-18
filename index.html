@@ -87,9 +87,31 @@
       padding: clamp(22px, 4vw, 38px);
       border: 1px solid rgba(111, 58, 36, 0.12);
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.62);
-      box-shadow: 0 22px 70px rgba(126, 75, 38, 0.16);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 246, 222, 0.70));
+      box-shadow: 0 22px 70px rgba(126, 75, 38, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+
+    .countdown-copy::before {
+      position: absolute;
+      inset: 0 0 auto;
+      height: 7px;
+      content: "";
+      background: linear-gradient(90deg, #166ee5 0 28%, #fff 28% 34%, #d71920 34% 68%, #fff 68% 74%, #f5b942 74% 100%);
+    }
+
+    .countdown-copy::after {
+      position: absolute;
+      right: -42px;
+      bottom: -46px;
+      width: 132px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 120, 170, 0.18), transparent 68%);
+      content: "";
+      pointer-events: none;
     }
 
     .eyebrow {
@@ -144,10 +166,47 @@
     }
 
     .countdown-page h1 {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
       margin: 0;
-      color: #3b221d;
+      color: transparent;
+      background: linear-gradient(92deg, #f0443e 0%, #ff78aa 34%, #166ee5 68%, #d71920 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
       font-size: clamp(2.45rem, 6vw, 5.8rem);
+      filter: drop-shadow(0 10px 22px rgba(111, 58, 36, 0.18));
       text-wrap: balance;
+    }
+
+    .countdown-page h1::before,
+    .countdown-page h1::after {
+      position: absolute;
+      display: grid;
+      width: clamp(28px, 5vw, 48px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.66);
+      box-shadow: 0 12px 28px rgba(111, 58, 36, 0.12);
+      color: #f0443e;
+      content: "♥";
+      font-size: clamp(1rem, 2.4vw, 1.65rem);
+      place-items: center;
+    }
+
+    .countdown-page h1::before {
+      top: -0.45em;
+      right: -0.55em;
+      transform: rotate(12deg);
+    }
+
+    .countdown-page h1::after {
+      left: -0.55em;
+      bottom: -0.34em;
+      color: #166ee5;
+      content: "★";
+      transform: rotate(-10deg);
     }
 
     .countdown-page .lead,
@@ -156,6 +215,8 @@
     }
 
     .countdown {
+      position: relative;
+      z-index: 1;
       display: grid;
       grid-template-columns: repeat(4, minmax(72px, 1fr));
       gap: clamp(10px, 2vw, 16px);
@@ -235,7 +296,7 @@
       border: 0;
       border-radius: 8px;
       background: #fff7bd;
-      box-shadow: 0 28px 80px rgba(126, 75, 38, 0.20);
+      box-shadow: 0 28px 80px rgba(126, 75, 38, 0.20), 0 0 0 10px rgba(255, 255, 255, 0.48);
       overflow: hidden;
     }
 
@@ -250,7 +311,7 @@
       inset: 10% -24% auto auto;
       width: 74%;
       aspect-ratio: 1;
-      border: 42px solid rgba(255, 255, 255, 0.34);
+      border: 42px solid rgba(255, 255, 255, 0.22);
       border-radius: 50%;
       transform: rotate(-18deg);
     }
@@ -614,8 +675,21 @@
 
     body[data-state="love"] {
       background:
-        linear-gradient(rgba(255, 248, 238, 0.68), rgba(255, 238, 220, 0.72)),
+        linear-gradient(rgba(255, 248, 238, 0.58), rgba(255, 238, 220, 0.64)),
         url("assets/flower-bg-tulips.jpg") center bottom / cover fixed;
+    }
+
+    body[data-state="love"]::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      content: "";
+      background:
+        linear-gradient(115deg, rgba(22, 110, 229, 0.16) 0 18%, transparent 18% 100%),
+        linear-gradient(245deg, rgba(215, 25, 32, 0.16) 0 18%, transparent 18% 100%),
+        radial-gradient(circle at 18% 78%, rgba(245, 185, 66, 0.22), transparent 24%),
+        radial-gradient(circle at 82% 78%, rgba(255, 120, 170, 0.20), transparent 22%);
+      pointer-events: none;
     }
 
     body[data-state="love"]::after {
@@ -650,8 +724,11 @@
       margin: 14px auto 10px;
       font-size: clamp(3rem, 9vw, 7.2rem);
       line-height: 0.98;
-      color: #6b2432;
-      text-shadow: 0 8px 30px rgba(139, 46, 58, 0.16);
+      color: transparent;
+      background: linear-gradient(90deg, #166ee5 0%, #7a2f72 38%, #d71920 72%, #f5b942 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      filter: drop-shadow(0 12px 24px rgba(95, 35, 42, 0.18));
     }
 
     .name-line {
@@ -693,11 +770,34 @@
       width: min(980px, 100%);
       margin: 0 auto;
       padding: clamp(12px, 2vw, 18px);
-      border: 1px solid rgba(126, 52, 57, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.66);
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.58);
-      box-shadow: 0 28px 80px rgba(126, 75, 58, 0.18);
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.78), rgba(255, 248, 232, 0.64)),
+        linear-gradient(135deg, rgba(22, 110, 229, 0.16), rgba(215, 25, 32, 0.16));
+      box-shadow: 0 30px 90px rgba(90, 42, 42, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+
+    .player-carousel::before {
+      position: absolute;
+      inset: 0 0 auto;
+      z-index: 2;
+      height: 8px;
+      content: "";
+      background: linear-gradient(90deg, #166ee5 0 26%, #fff 26% 31%, #d71920 31% 64%, #fff 64% 69%, #f5b942 69% 100%);
+      pointer-events: none;
+    }
+
+    .player-carousel::after {
+      position: absolute;
+      inset: 12px;
+      z-index: 2;
+      border: 1px solid rgba(255, 255, 255, 0.50);
+      border-radius: 8px;
+      content: "";
+      pointer-events: none;
     }
 
     .carousel-window {
@@ -706,7 +806,11 @@
       min-height: 360px;
       border-radius: 8px;
       overflow: hidden;
-      background: #6b2432;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(22, 110, 229, 0.34), transparent 30%),
+        radial-gradient(circle at 82% 72%, rgba(215, 25, 32, 0.32), transparent 30%),
+        #501a28;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
     }
 
     .player-slide {
@@ -797,21 +901,24 @@
       display: inline-grid;
       width: 44px;
       aspect-ratio: 1;
-      border: 1px solid rgba(126, 52, 57, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.72);
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.72);
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 246, 228, 0.72));
       color: #6b2432;
       cursor: pointer;
       font-size: 1.4rem;
       font-weight: 900;
       place-items: center;
-      transition: transform 160ms ease, background 160ms ease;
+      box-shadow: 0 10px 26px rgba(95, 35, 42, 0.12);
+      transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
     }
 
     .carousel-btn:hover,
     .carousel-btn:focus-visible {
       background: #fff;
       transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(95, 35, 42, 0.18);
       outline: none;
     }
 
@@ -830,12 +937,14 @@
       background: rgba(107, 36, 50, 0.24);
       cursor: pointer;
       padding: 0;
+      transition: width 160ms ease, background 160ms ease, transform 160ms ease;
     }
 
     .carousel-dot.is-active {
       width: 28px;
       border-radius: 999px;
-      background: #c51f49;
+      background: linear-gradient(90deg, #166ee5, #d71920);
+      transform: translateY(-1px);
     }
 
     .love-collage::before {
@@ -951,7 +1060,7 @@
 
       body[data-state="love"] {
         background:
-          linear-gradient(rgba(255, 248, 238, 0.70), rgba(255, 238, 220, 0.74)),
+          linear-gradient(rgba(255, 248, 238, 0.62), rgba(255, 238, 220, 0.68)),
           url("assets/flower-bg-tulips.jpg") center bottom / cover scroll;
       }
 
@@ -973,6 +1082,20 @@
       .countdown-page h1 {
         font-size: clamp(2rem, 11vw, 3.2rem);
         text-align: center;
+      }
+
+      .countdown-page h1::before,
+      .countdown-page h1::after {
+        width: 30px;
+        font-size: 1rem;
+      }
+
+      .countdown-page h1::before {
+        right: -0.34em;
+      }
+
+      .countdown-page h1::after {
+        left: -0.34em;
       }
 
       .countdown {
@@ -1004,11 +1127,11 @@
       }
 
       .love-copy {
-        text-align: left;
+        text-align: center;
       }
 
       .love-title {
-        font-size: clamp(2rem, 11vw, 3.4rem);
+        font-size: clamp(2.8rem, 14vw, 4.6rem);
       }
 
       .love-copy .lead {
@@ -1025,11 +1148,13 @@
 
       .player-carousel {
         padding: 10px;
+        border-radius: 8px;
       }
 
       .carousel-window {
         aspect-ratio: 4 / 5;
         min-height: 420px;
+        border-radius: 8px;
       }
 
       .slide-caption {
@@ -1054,6 +1179,10 @@
 
       .carousel-btn {
         width: 40px;
+      }
+
+      .player-carousel::after {
+        inset: 8px;
       }
 
       .floating {
@@ -1099,6 +1228,11 @@
         font-size: clamp(2rem, 14vw, 3rem);
       }
 
+      .countdown-page h1::before,
+      .countdown-page h1::after {
+        display: none;
+      }
+
       .time-box::before {
         height: 6px;
       }
@@ -1136,7 +1270,7 @@
       <div class="stage hero">
         <div class="countdown-copy">
           <div class="eyebrow"><span class="spark" aria-hidden="true"></span>北京时间 2026.05.20 00:00</div>
-          <h1 id="countdown-title">520 倒计时</h1>
+          <h1 id="countdown-title">奔赴 5.20</h1>
           <p class="lead">等到零点，Hello Kitty、玲娜贝儿、申花蓝和阿森纳红白会一起变成一张甜甜的 520 海报。</p>
 
           <div class="countdown" aria-live="polite">
@@ -1238,6 +1372,9 @@
 
           <section class="player-carousel" aria-label="HuYi520 主题照片轮播">
             <div class="carousel-window">
+              <article class="player-slide" style="--slide-bg: url('assets/carousel/fast/04-cao-linabell.jpg')">
+                <img src="assets/carousel/fast/04-cao-linabell.jpg" alt="曹赟定和玲娜贝儿合影" loading="lazy" decoding="async">
+              </article>
               <article class="player-slide is-active" style="--slide-bg: url('assets/carousel/fast/01-linabell-blue.jpg')">
                 <img src="assets/carousel/fast/01-linabell-blue.jpg" alt="玲娜贝儿穿上海申花蓝色外套" loading="eager" decoding="async" fetchpriority="high">
               </article>
@@ -1246,9 +1383,6 @@
               </article>
               <article class="player-slide" style="--slide-bg: url('assets/carousel/fast/03-shenhua-training.jpg')">
                 <img src="assets/carousel/fast/03-shenhua-training.jpg" alt="上海申花球员训练场照片" loading="lazy" decoding="async">
-              </article>
-              <article class="player-slide" style="--slide-bg: url('assets/carousel/fast/04-cao-linabell.jpg')">
-                <img src="assets/carousel/fast/04-cao-linabell.jpg" alt="曹赟定和玲娜贝儿合影" loading="lazy" decoding="async">
               </article>
               <article class="player-slide" style="--slide-bg: url('assets/carousel/fast/05-arsenal-team.jpg')">
                 <img src="assets/carousel/fast/05-arsenal-team.jpg" alt="阿森纳球队庆祝照片" loading="lazy" decoding="async">
