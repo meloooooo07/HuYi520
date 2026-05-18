@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>5.20 倒计时</title>
-  <meta name="description" content="到 2026 年 5 月 20 日零点的倒计时，以及 5.20 到来后的主题海报页面。">
+  <title>Counting Down to 5.20</title>
+  <meta name="description" content="A countdown to 5.20, followed by the HuYi520 theme page.">
   <link rel="preload" as="image" href="assets/home-poster-fast.jpg">
   <link rel="preload" as="image" href="assets/flower-bg-tulips.jpg">
   <link rel="preload" as="image" href="assets/carousel/fast/01-linabell-blue.jpg">
@@ -63,6 +63,57 @@
       font: inherit;
     }
 
+    .music-toggle {
+      position: fixed;
+      right: clamp(14px, 3vw, 26px);
+      bottom: clamp(14px, 3vw, 26px);
+      z-index: 20;
+      display: grid;
+      width: clamp(46px, 10vw, 56px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.52) 62%),
+        linear-gradient(135deg, rgba(255, 120, 170, 0.72), rgba(22, 110, 229, 0.64));
+      box-shadow: 0 18px 42px rgba(66, 38, 88, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.76);
+      color: #d71920;
+      cursor: pointer;
+      place-items: center;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      backdrop-filter: blur(16px);
+    }
+
+    .music-toggle:hover,
+    .music-toggle:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 52px rgba(66, 38, 88, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.86);
+      outline: none;
+    }
+
+    .music-toggle.is-playing {
+      background:
+        radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.98), rgba(255, 247, 219, 0.62) 62%),
+        linear-gradient(135deg, rgba(245, 185, 66, 0.76), rgba(255, 120, 170, 0.72));
+    }
+
+    .music-toggle.is-playing::after {
+      position: absolute;
+      inset: -7px;
+      border: 1px solid rgba(255, 120, 170, 0.32);
+      border-radius: inherit;
+      content: "";
+      animation: musicPulse 1.8s ease-out infinite;
+    }
+
+    .music-icon {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(1.35rem, 4vw, 1.75rem);
+      font-weight: 900;
+      line-height: 1;
+    }
+
     .page {
       display: grid;
       min-height: 100vh;
@@ -92,6 +143,7 @@
       box-shadow: 0 22px 70px rgba(126, 75, 38, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(18px);
       overflow: hidden;
+      text-align: center;
     }
 
     .countdown-copy::before {
@@ -221,6 +273,8 @@
       grid-template-columns: repeat(4, minmax(72px, 1fr));
       gap: clamp(10px, 2vw, 16px);
       margin-top: clamp(22px, 4vw, 34px);
+      justify-content: center;
+      text-align: center;
     }
 
     .time-box {
@@ -1261,6 +1315,18 @@
           transform: translateY(-13px);
         }
       }
+
+      @keyframes musicPulse {
+        0% {
+          opacity: 0.72;
+          transform: scale(0.92);
+        }
+
+        100% {
+          opacity: 0;
+          transform: scale(1.28);
+        }
+      }
     }
   </style>
 </head>
@@ -1270,14 +1336,14 @@
       <div class="stage hero">
         <div class="countdown-copy">
           <div class="eyebrow"><span class="spark" aria-hidden="true"></span>北京时间 2026.05.20 00:00</div>
-          <h1 id="countdown-title">奔赴 5.20</h1>
+          <h1 id="countdown-title">Counting Down to 5.20</h1>
           <p class="lead">等到零点，Hello Kitty、玲娜贝儿、申花蓝和阿森纳红白会一起变成一张甜甜的 520 海报。</p>
 
           <div class="countdown" aria-live="polite">
-            <div class="time-box"><strong id="days">00</strong><span>天</span></div>
-            <div class="time-box"><strong id="hours">00</strong><span>小时</span></div>
-            <div class="time-box"><strong id="minutes">00</strong><span>分钟</span></div>
-            <div class="time-box"><strong id="seconds">00</strong><span>秒</span></div>
+            <div class="time-box"><strong id="days">00</strong><span>Days</span></div>
+            <div class="time-box"><strong id="hours">00</strong><span>Hours</span></div>
+            <div class="time-box"><strong id="minutes">00</strong><span>Minutes</span></div>
+            <div class="time-box"><strong id="seconds">00</strong><span>Seconds</span></div>
           </div>
 
           <p class="note">倒计时结束后，页面会自动切换成 5.20 主题海报。</p>
@@ -1390,6 +1456,9 @@
               <article class="player-slide" style="--slide-bg: url('assets/carousel/fast/06-arsenal-stadium.jpg')">
                 <img src="assets/carousel/fast/06-arsenal-stadium.jpg" alt="阿森纳主场看台照片" loading="lazy" decoding="async">
               </article>
+              <article class="player-slide" style="--slide-bg: url('assets/carousel/fast/12-arsenal-arteta-celebration.jpg')">
+                <img src="assets/carousel/fast/12-arsenal-arteta-celebration.jpg" alt="阿森纳补时绝杀后阿尔特塔庆祝截图" loading="lazy" decoding="async">
+              </article>
               <article class="player-slide" style="--slide-bg: url('assets/carousel/fast/07-odegaard-applause.jpg')">
                 <img src="assets/carousel/fast/07-odegaard-applause.jpg" alt="厄德高鼓掌致意照片" loading="lazy" decoding="async">
               </article>
@@ -1418,10 +1487,18 @@
     </section>
   </main>
 
+  <!-- Music: Lovely Piano Song, FreePD public domain / CC0. -->
+  <audio class="bgm-audio" src="assets/audio/huyi520-bgm.mp3" preload="metadata" loop></audio>
+  <button class="music-toggle" type="button" aria-label="Play background music" aria-pressed="false">
+    <span class="music-icon" aria-hidden="true">♪</span>
+  </button>
+
   <script>
     const targetTime = new Date("2026-05-20T00:00:00+08:00").getTime();
     const params = new URLSearchParams(window.location.search);
     const previewLove = params.get("preview") === "love";
+    const musicButton = document.querySelector(".music-toggle");
+    const bgmAudio = document.querySelector(".bgm-audio");
     const units = {
       days: document.getElementById("days"),
       hours: document.getElementById("hours"),
@@ -1431,6 +1508,46 @@
 
     function pad(value) {
       return String(value).padStart(2, "0");
+    }
+
+    function updateMusicButton(isPlaying) {
+      musicButton?.classList.toggle("is-playing", isPlaying);
+      musicButton?.setAttribute("aria-label", isPlaying ? "Pause background music" : "Play background music");
+      musicButton?.setAttribute("aria-pressed", String(isPlaying));
+    }
+
+    async function toggleMusic() {
+      if (!bgmAudio || !musicButton) {
+        return;
+      }
+
+      if (!bgmAudio.paused) {
+        bgmAudio.pause();
+        updateMusicButton(false);
+        return;
+      }
+
+      bgmAudio.volume = 0.38;
+      try {
+        await bgmAudio.play();
+        updateMusicButton(true);
+      } catch (error) {
+        updateMusicButton(false);
+      }
+    }
+
+    async function autoplayMusic() {
+      if (!bgmAudio) {
+        return;
+      }
+
+      bgmAudio.volume = 0.38;
+      try {
+        await bgmAudio.play();
+        updateMusicButton(true);
+      } catch (error) {
+        updateMusicButton(false);
+      }
     }
 
     function revealLovePage() {
@@ -1524,6 +1641,8 @@
     }
 
     updateCountdown();
+    musicButton?.addEventListener("click", toggleMusic);
+    autoplayMusic();
     window.setInterval(updateCountdown, 1000);
   </script>
 </body>
