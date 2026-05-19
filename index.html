@@ -1920,6 +1920,8 @@
     const previewLove = params.get("preview") === "love";
     const musicButton = document.querySelector(".music-toggle");
     const bgmAudio = document.querySelector(".bgm-audio");
+    let musicUnlockBound = false;
+    let unbindMusicUnlock = () => {};
     const units = {
       days: document.getElementById("days"),
       hours: document.getElementById("hours"),
@@ -1937,6 +1939,52 @@
       musicButton?.setAttribute("aria-pressed", String(isPlaying));
     }
 
+    async function playMusic() {
+      if (!bgmAudio) {
+        return false;
+      }
+
+      bgmAudio.volume = 0.38;
+      try {
+        await bgmAudio.play();
+        unbindMusicUnlock();
+        updateMusicButton(true);
+        return true;
+      } catch (error) {
+        console.info("Background music could not start yet:", error);
+        updateMusicButton(false);
+        return false;
+      }
+    }
+
+    function bindMusicUnlock() {
+      if (!bgmAudio || musicUnlockBound || !bgmAudio.paused) {
+        return;
+      }
+
+      musicUnlockBound = true;
+
+      const cleanup = () => {
+        document.removeEventListener("pointerdown", unlockMusic);
+        document.removeEventListener("keydown", unlockMusic);
+        musicUnlockBound = false;
+        unbindMusicUnlock = () => {};
+      };
+
+      const unlockMusic = async (event) => {
+        if (event?.target?.closest?.(".music-toggle")) {
+          return;
+        }
+
+        cleanup();
+        await playMusic();
+      };
+
+      unbindMusicUnlock = cleanup;
+      document.addEventListener("pointerdown", unlockMusic);
+      document.addEventListener("keydown", unlockMusic);
+    }
+
     async function toggleMusic() {
       if (!bgmAudio || !musicButton) {
         return;
@@ -1948,12 +1996,9 @@
         return;
       }
 
-      bgmAudio.volume = 0.38;
-      try {
-        await bgmAudio.play();
-        updateMusicButton(true);
-      } catch (error) {
-        updateMusicButton(false);
+      const didPlay = await playMusic();
+      if (!didPlay) {
+        bindMusicUnlock();
       }
     }
 
@@ -1962,12 +2007,9 @@
         return;
       }
 
-      bgmAudio.volume = 0.38;
-      try {
-        await bgmAudio.play();
-        updateMusicButton(true);
-      } catch (error) {
-        updateMusicButton(false);
+      const didPlay = await playMusic();
+      if (!didPlay) {
+        bindMusicUnlock();
       }
     }
 
