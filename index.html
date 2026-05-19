@@ -1622,7 +1622,13 @@
     }
 
     .player-slide::before {
+      background-image: none;
       filter: blur(24px) saturate(1.18) contrast(1.02);
+      opacity: 0;
+    }
+
+    .player-slide.is-active::before {
+      background-image: var(--slide-bg);
       opacity: 0.62;
     }
 
@@ -2015,11 +2021,16 @@
       }
 
       function preloadAround(index) {
-        [index + 1, index + 2].forEach((nextIndex) => {
+        [index + 1, index + 2].forEach((nextIndex, offset) => {
           const img = slides[nextIndex % slides.length]?.querySelector("img");
           if (img && !img.dataset.preloaded) {
+            img.loading = offset === 0 ? "eager" : "lazy";
+            img.fetchPriority = offset === 0 ? "high" : "low";
             const preload = new Image();
             preload.src = img.currentSrc || img.src;
+            if (typeof preload.decode === "function") {
+              preload.decode().catch(() => {});
+            }
             img.dataset.preloaded = "true";
           }
         });
